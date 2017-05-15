@@ -55,11 +55,17 @@
                                         <rect key="frame" x="1" y="205" width="92.5" height="101"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="4"/>
+                                        <connections>
+                                            <action selector="fourButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tG9-rq-LEl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vod-Mo-Ac2">
                                         <rect key="frame" x="94.5" y="205" width="92.5" height="101"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="5"/>
+                                        <connections>
+                                            <action selector="fiveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jSk-Ps-qRT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-6M-rPI">
                                         <rect key="frame" x="188" y="205" width="92.5" height="101"/>
@@ -110,6 +116,9 @@
                                         <rect key="frame" x="281.5" y="409" width="92.5" height="101"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="="/>
+                                        <connections>
+                                            <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OgN-Qf-LsA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zih-2S-qD1">
                                         <rect key="frame" x="1" y="1" width="92.5" height="101"/>
@@ -130,6 +139,9 @@
                                         <rect key="frame" x="281.5" y="1" width="92.5" height="101"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="plusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E2z-fK-Sbv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -235,6 +247,9 @@
                             <constraint firstItem="vkG-sd-6r6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="ft1-Ua-AoY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="screenNumber" destination="YVC-FC-OsP" id="lLQ-SI-lHm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
