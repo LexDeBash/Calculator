@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var minusButtonOn = false
     var multiplyButtonOn = false
     var divisionButtonOn = false
+    var equalButtonOn = false
     var newNumber = false
     var buttonOn = false
     var result: Int?
@@ -27,14 +28,18 @@ class ViewController: UIViewController {
     }
     
     func compilation() {
-        if plusButtonOn {
+        equalButtonOn = false
+        
+        switch true {
+        case plusButtonOn:
             result! += currentNuber!
-        } else if minusButtonOn {
+        case minusButtonOn:
             result! -= currentNuber!
-        } else if multiplyButtonOn {
+        case multiplyButtonOn:
             result! *= currentNuber!
-        } else if divisionButtonOn {
+        case divisionButtonOn:
             result! /= currentNuber!
+        default: break
         }
     }
     
@@ -50,26 +55,68 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func fourButton(_ sender: UIButton) {
+    func digitalNuber(_ digit: Int) {
         if screenNumber.text == "0" || newNumber {
-            screenNumber.text = "4"
+            screenNumber.text = String(digit)
             newNumber = false
             buttonOn = false
         } else {
-            screenNumber.text = screenNumber.text! + "4"
+            screenNumber.text = screenNumber.text! + String(digit)
         }
         currentNuber = Int(screenNumber.text!)!
     }
     
+    @IBAction func resetButton(_ sender: UIButton) {
+        plusButtonOn = false
+        minusButtonOn = false
+        multiplyButtonOn = false
+        divisionButtonOn = false
+        equalButtonOn = false
+        newNumber = false
+        buttonOn = false
+        result = nil
+        currentNuber = nil
+        screenNumber.text = "0"
+    }
+    
+    @IBAction func zeroButton(_ sender: UIButton) {
+        digitalNuber(0)
+    }
+    
+    @IBAction func oneButton(_ sender: UIButton) {
+        digitalNuber(1)
+    }
+    
+    @IBAction func twoButton(_ sender: UIButton) {
+        digitalNuber(2)
+    }
+    
+    @IBAction func threeButton(_ sender: UIButton) {
+        digitalNuber(3)
+    }
+    
+    @IBAction func fourButton(_ sender: UIButton) {
+        digitalNuber(4)
+    }
+    
     @IBAction func fiveButton(_ sender: UIButton) {
-        if screenNumber.text == "0" || newNumber {
-            screenNumber.text = "5"
-            newNumber = false
-            buttonOn = false
-        } else {
-            screenNumber.text = screenNumber.text! + "5"
-        }
-        currentNuber = Int(screenNumber.text!)!
+        digitalNuber(5)
+    }
+    
+    @IBAction func sixButton(_ sender: UIButton) {
+        digitalNuber(6)
+    }
+    
+    @IBAction func sevenButton(_ sender: UIButton) {
+        digitalNuber(7)
+    }
+    
+    @IBAction func eightButton(_ sender: UIButton) {
+        digitalNuber(8)
+    }
+    
+    @IBAction func nineButton(_ sender: UIButton) {
+        digitalNuber(9)
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
@@ -109,7 +156,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
-
+        compilation()
+        screenNumber.text = String(result!)
+        plusButtonOn = false
+        minusButtonOn = false
+        multiplyButtonOn = false
+        divisionButtonOn = false
+        equalButtonOn = true
+        print("\(result!)")
     }
 
 
