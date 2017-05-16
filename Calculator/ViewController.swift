@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var newNumber = false
     var buttonOn = false
     var lastNumber = 0
+    var numberOne: Int?
+    var numberTwo: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,6 @@ class ViewController: UIViewController {
         } else {
             screenNumber.text = screenNumber.text! + "4"
         }
-
     }
     @IBAction func fiveButton(_ sender: UIButton) {
         lastNumber = 0
@@ -48,6 +49,24 @@ class ViewController: UIViewController {
             newNumber = true
             buttonOn = true
             tempResult += Int(screenNumber.text!)!
+            screenNumber.text = String(tempResult)
+        }
+    }
+    
+    @IBAction func minusButton(_ sender: UIButton) {
+        if buttonOn == false {
+            newNumber = true
+            buttonOn = true
+            if numberOne == nil {
+                numberOne = Int(screenNumber.text!)!
+                tempResult = numberOne!
+            } else if numberTwo == nil {
+                numberTwo = Int(screenNumber.text!)!
+                tempResult = numberOne! - numberTwo!
+            } else {
+                tempResult -= Int(screenNumber.text!)!
+            }
+            
             screenNumber.text = String(tempResult)
         }
     }

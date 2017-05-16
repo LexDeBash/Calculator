@@ -50,6 +50,9 @@
                                         <rect key="frame" x="281.5" y="103" width="92.5" height="101"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="-"/>
+                                        <connections>
+                                            <action selector="minusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bt7-oZ-7X2"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJ2-I6-pdm">
                                         <rect key="frame" x="1" y="205" width="92.5" height="101"/>
