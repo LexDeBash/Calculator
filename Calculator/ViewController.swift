@@ -11,10 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var screenNumber: UILabel!
-    var tempResult = 0
+    
+    var plusButtonOn = false
+    var minusButtonOn = false
     var newNumber = false
     var buttonOn = false
     var lastNumber = 0
+    var tempResult = 0
     var numberOne: Int?
     var numberTwo: Int?
 
@@ -45,6 +48,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
+        plusButtonOn = true
+        minusButtonOn = false
         if buttonOn == false {
             newNumber = true
             buttonOn = true
@@ -54,6 +59,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
+        minusButtonOn = true
+        plusButtonOn = false
         if buttonOn == false {
             newNumber = true
             buttonOn = true
@@ -75,12 +82,23 @@ class ViewController: UIViewController {
         newNumber = true
         buttonOn = true
         if lastNumber != 0 {
-            tempResult += lastNumber
-            screenNumber.text = String(tempResult)
+            if plusButtonOn {
+                tempResult += lastNumber
+                screenNumber.text = String(tempResult)
+            } else if minusButtonOn {
+                tempResult -= lastNumber
+                screenNumber.text = String(tempResult)
+            }
+            
         } else {
             lastNumber = Int(screenNumber.text!)!
-            tempResult += lastNumber
-            screenNumber.text = String(tempResult)
+            if plusButtonOn {
+                tempResult += lastNumber
+                screenNumber.text = String(tempResult)
+            } else if minusButtonOn {
+                tempResult -= lastNumber
+                screenNumber.text = String(tempResult)
+            }
         }
     }
 
