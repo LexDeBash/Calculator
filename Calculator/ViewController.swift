@@ -28,8 +28,7 @@ class ViewController: UIViewController {
     }
     
     func compilation() {
-//        equalButtonOn = false
-        
+        guard buttonOn == false else { return }
         switch true {
         case plusButtonOn:
             savedValue! += currentValue!
@@ -71,7 +70,7 @@ class ViewController: UIViewController {
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
-//        equalButtonOn = false
+        equalButtonOn = false
         newNumber = false
         buttonOn = false
         savedValue = nil
