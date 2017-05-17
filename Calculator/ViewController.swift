@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     var equalButtonOn = false
     var newNumber = false
     var buttonOn = false
-    var result: Int?
-    var currentNuber: Int?
+    var savedValue: Int?
+    var currentValue: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,30 +32,30 @@ class ViewController: UIViewController {
         
         switch true {
         case plusButtonOn:
-            result! += currentNuber!
+            savedValue! += currentValue!
         case minusButtonOn:
-            result! -= currentNuber!
+            savedValue! -= currentValue!
         case multiplyButtonOn:
-            result! *= currentNuber!
+            savedValue! *= currentValue!
         case divisionButtonOn:
-            result! /= currentNuber!
+            savedValue! /= currentValue!
         default: break
         }
     }
     
-    func funcButton() {
+    func saveValue() {
         if buttonOn == false {
             newNumber = true
             buttonOn = true
-            if result != nil {
-                screenNumber.text = String(result!)
+            if savedValue != nil {
+                screenNumber.text = String(savedValue!)
             } else {
-                result = Int(screenNumber.text!)!
+                savedValue = Int(screenNumber.text!)!
             }
         }
     }
     
-    func digitalNuber(_ digit: Int) {
+    func digitalButton(_ digit: Int) {
         if screenNumber.text == "0" || newNumber {
             screenNumber.text = String(digit)
             newNumber = false
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         } else {
             screenNumber.text = screenNumber.text! + String(digit)
         }
-        currentNuber = Int(screenNumber.text!)!
+        currentValue = Int(screenNumber.text!)!
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
@@ -74,49 +74,49 @@ class ViewController: UIViewController {
         equalButtonOn = false
         newNumber = false
         buttonOn = false
-        result = nil
-        currentNuber = nil
+        savedValue = nil
+        currentValue = nil
         screenNumber.text = "0"
     }
     
     @IBAction func zeroButton(_ sender: UIButton) {
-        digitalNuber(0)
+        digitalButton(0)
     }
     
     @IBAction func oneButton(_ sender: UIButton) {
-        digitalNuber(1)
+        digitalButton(1)
     }
     
     @IBAction func twoButton(_ sender: UIButton) {
-        digitalNuber(2)
+        digitalButton(2)
     }
     
     @IBAction func threeButton(_ sender: UIButton) {
-        digitalNuber(3)
+        digitalButton(3)
     }
     
     @IBAction func fourButton(_ sender: UIButton) {
-        digitalNuber(4)
+        digitalButton(4)
     }
     
     @IBAction func fiveButton(_ sender: UIButton) {
-        digitalNuber(5)
+        digitalButton(5)
     }
     
     @IBAction func sixButton(_ sender: UIButton) {
-        digitalNuber(6)
+        digitalButton(6)
     }
     
     @IBAction func sevenButton(_ sender: UIButton) {
-        digitalNuber(7)
+        digitalButton(7)
     }
     
     @IBAction func eightButton(_ sender: UIButton) {
-        digitalNuber(8)
+        digitalButton(8)
     }
     
     @IBAction func nineButton(_ sender: UIButton) {
-        digitalNuber(9)
+        digitalButton(9)
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
@@ -125,7 +125,7 @@ class ViewController: UIViewController {
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
-        funcButton()
+        saveValue()
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         minusButtonOn = true
         multiplyButtonOn = false
         divisionButtonOn = false
-        funcButton()
+        saveValue()
     }
     
     @IBAction func multiplyButton(_ sender: UIButton) {
@@ -143,7 +143,7 @@ class ViewController: UIViewController {
         minusButtonOn = false
         multiplyButtonOn = true
         divisionButtonOn = false
-        funcButton()
+        saveValue()
     }
     
     @IBAction func divisionButton(_ sender: UIButton) {
@@ -152,18 +152,18 @@ class ViewController: UIViewController {
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = true
-        funcButton()
+        saveValue()
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
         compilation()
-        screenNumber.text = String(result!)
+        screenNumber.text = String(savedValue!)
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
         equalButtonOn = true
-        print("\(result!)")
+        print("\(savedValue!)")
     }
 
 
