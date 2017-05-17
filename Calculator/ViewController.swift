@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     }
     
     func compilation() {
-        guard buttonOn == false else { return }
+        guard buttonOn == false || equalButtonOn else { return } // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
         switch true {
         case plusButtonOn:
             savedValue! += currentValue!
@@ -159,6 +159,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
+        equalButtonOn = true
+        guard buttonOn == false else {
+            compilation()
+            return screenNumber.text = String(savedValue!)
+        }
         compilation()
         screenNumber.text = String(savedValue!)
         plusButtonOn = false
@@ -166,9 +171,6 @@ class ViewController: UIViewController {
         multiplyButtonOn = false
         divisionButtonOn = false
         newNumber = true
-        equalButtonOn = true
     }
-
-
 }
 
