@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         if buttonOn == false {
             newNumber = true
             buttonOn = true
-            if savedValue != nil {
+            if savedValue != nil && equalButtonOn == false {
                 screenNumber.text = String(savedValue!)
             } else {
                 savedValue = Int(screenNumber.text!)!
@@ -119,55 +119,43 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
-        if equalButtonOn {
-            savedValue = nil
-        }
         compilation()
+        saveValue()
         plusButtonOn = true
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
         equalButtonOn = false
-        saveValue()
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
-        if equalButtonOn {
-            savedValue = nil
-        }
         compilation()
+        saveValue()
         plusButtonOn = false
         minusButtonOn = true
         multiplyButtonOn = false
         divisionButtonOn = false
         equalButtonOn = false
-        saveValue()
     }
     
     @IBAction func multiplyButton(_ sender: UIButton) {
-        if equalButtonOn {
-            savedValue = nil
-        }
         compilation()
+        saveValue()
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = true
         divisionButtonOn = false
         equalButtonOn = false
-        saveValue()
     }
     
     @IBAction func divisionButton(_ sender: UIButton) {
-        if equalButtonOn {
-            savedValue = nil
-        }
         compilation()
+        saveValue()
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = true
         equalButtonOn = false
-        saveValue()
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
@@ -179,7 +167,6 @@ class ViewController: UIViewController {
         divisionButtonOn = false
         newNumber = true
         equalButtonOn = true
-        print("\(savedValue!)")
     }
 
 
