@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     }
     
     func compilation() {
-        equalButtonOn = false
+//        equalButtonOn = false
         
         switch true {
         case plusButtonOn:
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
-        equalButtonOn = false
+//        equalButtonOn = false
         newNumber = false
         buttonOn = false
         savedValue = nil
@@ -120,38 +120,54 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
+        if equalButtonOn {
+            savedValue = nil
+        }
         compilation()
         plusButtonOn = true
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
+        equalButtonOn = false
         saveValue()
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
+        if equalButtonOn {
+            savedValue = nil
+        }
         compilation()
         plusButtonOn = false
         minusButtonOn = true
         multiplyButtonOn = false
         divisionButtonOn = false
+        equalButtonOn = false
         saveValue()
     }
     
     @IBAction func multiplyButton(_ sender: UIButton) {
+        if equalButtonOn {
+            savedValue = nil
+        }
         compilation()
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = true
         divisionButtonOn = false
+        equalButtonOn = false
         saveValue()
     }
     
     @IBAction func divisionButton(_ sender: UIButton) {
+        if equalButtonOn {
+            savedValue = nil
+        }
         compilation()
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = true
+        equalButtonOn = false
         saveValue()
     }
     
@@ -162,6 +178,7 @@ class ViewController: UIViewController {
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
+        newNumber = true
         equalButtonOn = true
         print("\(savedValue!)")
     }
