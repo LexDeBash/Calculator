@@ -12,10 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var screenNumber: UILabel!
     
-    var plusButtonOn = false
-    var minusButtonOn = false
-    var multiplyButtonOn = false
-    var divisionButtonOn = false
+    var operatorsArray: [String] = []
+    var removedOperator: String?
     var equalButtonOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
@@ -29,22 +27,32 @@ class ViewController: UIViewController {
     
     func compilation() {
         guard operatorButtonOn == false || equalButtonOn else {
-            print("Compilation: guard")
+            print("Compilation: First guard")
             return
         } // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
+        
+        guard operatorsArray.isEmpty == false || removedOperator != nil else {
+            print("Compilation: Second guard")
+            return
+        }
+        
+        var _operatorButton = ""
+        if removedOperator != nil {
+            _operatorButton = removedOperator!
+            print("compilation: _operatorButton = removedOperator \(_operatorButton)")
+        } else {
+            _operatorButton = operatorsArray.last!
+            print("compilation: _operatorButton = operatorsArray.last \(_operatorButton)")
+        }
         switch true {
-        case plusButtonOn:
+        case _operatorButton == "+":
             savedValue! += currentValue!
-            print("Compilation with plus. savedValue = \(savedValue!)")
-        case minusButtonOn:
+        case _operatorButton == "-":
             savedValue! -= currentValue!
-            print("Compilation with minus. savedValue = \(savedValue!)")
-        case multiplyButtonOn:
+        case _operatorButton == "*":
             savedValue! *= currentValue!
-            print("Compilation with multi. savedValue = \(savedValue!)")
-        case divisionButtonOn:
+        case _operatorButton == "/":
             savedValue! /= currentValue!
-            print("Compilation with division. savedValue = \(savedValue!)")
         default:
             print("Compilation false")
             break
@@ -82,10 +90,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
-        plusButtonOn = false
-        minusButtonOn = false
-        multiplyButtonOn = false
-        divisionButtonOn = false
+        operatorsArray = []
         equalButtonOn = false
         newValue = false
         operatorButtonOn = false
@@ -135,65 +140,57 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
+        removedOperator = nil
         equalButtonOn = false
         compilation()
         saveValue()
-        plusButtonOn = true
-        minusButtonOn = false
-        multiplyButtonOn = false
-        divisionButtonOn = false
+        operatorsArray.append("+")
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
+        removedOperator = nil
         equalButtonOn = false
         compilation()
         saveValue()
-        plusButtonOn = false
-        minusButtonOn = true
-        multiplyButtonOn = false
-        divisionButtonOn = false
+        operatorsArray.append("-")
     }
     
     @IBAction func multiplyButton(_ sender: UIButton) {
+        removedOperator = nil
         equalButtonOn = false
         compilation()
         saveValue()
-        plusButtonOn = false
-        minusButtonOn = false
-        multiplyButtonOn = true
-        divisionButtonOn = false
+        operatorsArray.append("*")
     }
     
     @IBAction func divisionButton(_ sender: UIButton) {
+        removedOperator = nil
         equalButtonOn = false
         compilation()
         saveValue()
-        plusButtonOn = false
-        minusButtonOn = false
-        multiplyButtonOn = false
-        divisionButtonOn = true
+        operatorsArray.append("/")
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
         guard equalButtonOn == false else {
-            savedValue! += currentValue!
+            compilation()
             return screenNumber.text = String(savedValue!)
         }
         equalButtonOn = true
         guard operatorButtonOn == false else {
             compilation()
-            print("Первая часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
+            print("Равно: Первая часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
             return screenNumber.text = String(savedValue!)
         }
         compilation()
         screenNumber.text = String(savedValue!)
-        plusButtonOn = false
-        minusButtonOn = false
-        multiplyButtonOn = false
-        divisionButtonOn = false
+        removedOperator = operatorsArray.removeLast()
+        print("Равно: removdOperator = \(removedOperator!)")
+        operatorsArray = []
         newValue = true
-        print("Второя часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
-        // Не проходит тест: 4 + 2 = =
+        print("Равно: Второя часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
+        // 10 - 3 = =
+        //
     }
 }
 
