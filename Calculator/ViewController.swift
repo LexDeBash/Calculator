@@ -175,6 +175,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
+        guard equalButtonOn == false else {
+            savedValue! += currentValue!
+            return screenNumber.text = String(savedValue!)
+        }
         equalButtonOn = true
         guard operatorButtonOn == false else {
             compilation()
