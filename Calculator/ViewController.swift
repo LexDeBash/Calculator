@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     var multiplyButtonOn = false
     var divisionButtonOn = false
     var equalButtonOn = false
-    var newNumber = false
-    var buttonOn = false
+    var newNumber = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
+    var buttonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
     var savedValue: Int?
     var currentValue: Int?
 
@@ -28,28 +28,41 @@ class ViewController: UIViewController {
     }
     
     func compilation() {
-        guard buttonOn == false || equalButtonOn else { return } // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
+        guard buttonOn == false || equalButtonOn else {
+            print("Compilation: guard")
+            return
+        } // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
         switch true {
         case plusButtonOn:
             savedValue! += currentValue!
+            print("Compilation with plus. savedValue = \(savedValue!)")
         case minusButtonOn:
             savedValue! -= currentValue!
+            print("Compilation with minus. savedValue = \(savedValue!)")
         case multiplyButtonOn:
             savedValue! *= currentValue!
+            print("Compilation with multi. savedValue = \(savedValue!)")
         case divisionButtonOn:
             savedValue! /= currentValue!
-        default: break
+            print("Compilation with division. savedValue = \(savedValue!)")
+        default:
+            print("Compilation false")
+            break
         }
     }
     
     func saveValue() {
         if buttonOn == false {
             newNumber = true
+            print("Func saveValue: newNumber true")
             buttonOn = true
+            print("Func saveValue: buttonOn true")
             if savedValue != nil && equalButtonOn == false {
                 screenNumber.text = String(savedValue!)
+                print("Func saveValue: screenNumber = \(savedValue!)")
             } else {
                 savedValue = Int(screenNumber.text!)!
+                print("Func saveValue: savedValue = \(Int(screenNumber.text!)!)")
             }
         }
     }
@@ -58,11 +71,14 @@ class ViewController: UIViewController {
         if screenNumber.text == "0" || newNumber {
             screenNumber.text = String(digit)
             newNumber = false
+            print("Func digitalButton: newNumber false")
             buttonOn = false
+            print("Func digitalButton: buttonOn false")
         } else {
             screenNumber.text = screenNumber.text! + String(digit)
         }
         currentValue = Int(screenNumber.text!)!
+        print("Func digitalButton: currentValue = \(Int(screenNumber.text!)!)")
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
@@ -119,49 +135,50 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
+        equalButtonOn = false
         compilation()
         saveValue()
         plusButtonOn = true
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = false
-        equalButtonOn = false
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
+        equalButtonOn = false
         compilation()
         saveValue()
         plusButtonOn = false
         minusButtonOn = true
         multiplyButtonOn = false
         divisionButtonOn = false
-        equalButtonOn = false
     }
     
     @IBAction func multiplyButton(_ sender: UIButton) {
+        equalButtonOn = false
         compilation()
         saveValue()
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = true
         divisionButtonOn = false
-        equalButtonOn = false
     }
     
     @IBAction func divisionButton(_ sender: UIButton) {
+        equalButtonOn = false
         compilation()
         saveValue()
         plusButtonOn = false
         minusButtonOn = false
         multiplyButtonOn = false
         divisionButtonOn = true
-        equalButtonOn = false
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
         equalButtonOn = true
         guard buttonOn == false else {
             compilation()
+            print("Первая часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
             return screenNumber.text = String(savedValue!)
         }
         compilation()
@@ -171,6 +188,8 @@ class ViewController: UIViewController {
         multiplyButtonOn = false
         divisionButtonOn = false
         newNumber = true
+        print("Второя часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
+        // Не проходит тест: 4 + 2 = =
     }
 }
 
