@@ -26,11 +26,13 @@ class ViewController: UIViewController {
     }
     
     func compilation() {
+        // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
         guard operatorButtonOn == false || equalButtonOn else {
             print("Compilation: First guard")
             return
-        } // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
+        }
         
+        // Выходим из функции при пустом массиве операторов или если последний оператор не сохранен
         guard operatorsArray.isEmpty == false || removedOperator != nil else {
             print("Compilation: Second guard")
             return
@@ -38,9 +40,9 @@ class ViewController: UIViewController {
         
         var _operatorButton = ""
         if removedOperator != nil {
-            _operatorButton = removedOperator!
+            _operatorButton = removedOperator! // Извлекаем сохраненный оператор
         } else {
-            _operatorButton = operatorsArray.last!
+            _operatorButton = operatorsArray.last! // Если сорхраненного оператора нет, берем последний оператор из массива
         }
         switch true {
         case _operatorButton == "+":
