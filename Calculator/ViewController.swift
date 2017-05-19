@@ -71,7 +71,6 @@ class ViewController: UIViewController {
                 print("Func saveValue: screenNumber = \(savedValue!)")
             } else {
                 savedValue = Double(screenNumber.text!)!
-                print("Func saveValue: savedValue = \(Int(screenNumber.text!)!)")
             }
         }
     }
@@ -87,7 +86,6 @@ class ViewController: UIViewController {
             screenNumber.text = screenNumber.text! + String(digit)
         }
         currentValue = Double(screenNumber.text!)!
-        print("Func digitalButton: currentValue = \(Int(screenNumber.text!)!)")
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
@@ -181,7 +179,10 @@ class ViewController: UIViewController {
         if operatorsArray.last == "*" {
             compilation()
             savedValue! /= 100
-        } else {
+        } else if operatorsArray.last == "/" {
+            compilation()
+            savedValue! *= 100
+        }else {
             currentValue = savedValue!/100 * currentValue!
             compilation()
         }
