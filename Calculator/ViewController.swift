@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var operatorsArray: [String] = []
     var removedOperator: String?
     var equalButtonOn = false
+    var percentKeyOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
     var savedValue: Double?
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
             print("Func saveValue: newValue true")
             operatorButtonOn = true
             print("Func saveValue: operatorButtonOn true")
-            if savedValue != nil && equalButtonOn == false {
+            if savedValue != nil && equalButtonOn == false && percentKeyOn == false {
                 screenNumber.text = String(savedValue!)
                 print("Func saveValue: screenNumber = \(savedValue!)")
             } else {
@@ -92,6 +93,7 @@ class ViewController: UIViewController {
     @IBAction func resetButton(_ sender: UIButton) {
         operatorsArray = []
         equalButtonOn = false
+        percentKeyOn = false
         newValue = false
         operatorButtonOn = false
         savedValue = nil
@@ -176,11 +178,17 @@ class ViewController: UIViewController {
     
     @IBAction func percentKey(_ sender: UIButton) {
         guard savedValue != nil else { return }
-        compilation()
-        savedValue! /= 100
+        if operatorsArray.last == "*" {
+            compilation()
+            savedValue! /= 100
+        } else {
+            currentValue = savedValue!/100 * currentValue!
+            compilation()
+        }
         screenNumber.text = String(savedValue!)
         operatorsArray = []
         newValue = true
+        percentKeyOn = true
     }
     
     @IBAction func squareRootKey(_ sender: UIButton) {
