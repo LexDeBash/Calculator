@@ -37,13 +37,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
-        let _operatorKey = sender.currentTitle
-        print("Key \(_operatorKey!)")
+        let lastOperator = sender.currentTitle
+        print("Key \(lastOperator!)")
         removedOperator = nil
         compilation()
         saveValue()
         equalButtonOn = false
-        operatorsArray.append(_operatorKey!)
+        operatorsArray.append(lastOperator!)
     }
     
     func compilation() {
@@ -112,10 +112,10 @@ class ViewController: UIViewController {
     
     @IBAction func percentKey(_ sender: UIButton) {
         guard savedValue != nil else { return }
-        if operatorsArray.last == "*" {
+        if operatorsArray.last == "×" {
             compilation()
             savedValue! /= 100
-        } else if operatorsArray.last == "/" {
+        } else if operatorsArray.last == "÷" {
             compilation()
             savedValue! *= 100
         }else {
