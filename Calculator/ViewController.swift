@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     var equalButtonOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
-    var savedValue: Int?
-    var currentValue: Int?
+    var savedValue: Double?
+    var currentValue: Double?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
                 screenNumber.text = String(savedValue!)
                 print("Func saveValue: screenNumber = \(savedValue!)")
             } else {
-                savedValue = Int(screenNumber.text!)!
+                savedValue = Double(screenNumber.text!)!
                 print("Func saveValue: savedValue = \(Int(screenNumber.text!)!)")
             }
         }
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         } else {
             screenNumber.text = screenNumber.text! + String(digit)
         }
-        currentValue = Int(screenNumber.text!)!
+        currentValue = Double(screenNumber.text!)!
         print("Func digitalButton: currentValue = \(Int(screenNumber.text!)!)")
     }
     
@@ -189,8 +189,7 @@ class ViewController: UIViewController {
         operatorsArray = []
         newValue = true
         print("Равно: Второя часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
-        // 10 - 3 = =
-        //
+
     }
 }
 
