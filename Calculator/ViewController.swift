@@ -39,15 +39,12 @@ class ViewController: UIViewController {
         var _operatorButton = ""
         if removedOperator != nil {
             _operatorButton = removedOperator!
-            print("compilation: _operatorButton = removedOperator \(_operatorButton)")
         } else {
             _operatorButton = operatorsArray.last!
-            print("compilation: _operatorButton = operatorsArray.last \(_operatorButton)")
         }
         switch true {
         case _operatorButton == "+":
             savedValue! += currentValue!
-            print("Равно: equalButtonOn = \(equalButtonOn)")
         case _operatorButton == "-":
             savedValue! -= currentValue!
         case _operatorButton == "*":
@@ -58,20 +55,19 @@ class ViewController: UIViewController {
             print("Compilation false")
             break
         }
+        print("Compilation: saveValue = \(savedValue!), currentValue = \(currentValue!)")
     }
     
     func saveValue() {
         if operatorButtonOn == false {
             newValue = true
-            print("Func saveValue: newValue true")
             operatorButtonOn = true
-            print("Func saveValue: operatorButtonOn true")
-            print("saveValue: equalButtonOn = \(equalButtonOn)")
             if savedValue != nil && equalButtonOn == false {
                 screenNumber.text = String(savedValue!)
-                print("Func saveValue: screenNumber = \(savedValue!)")
+                print("saveValue: screenNumber = savedValue = \(savedValue!)")
             } else {
                 savedValue = Double(screenNumber.text!)!
+                print("saveValue: savedValue = screenNumber = \(savedValue!)")
             }
         }
     }
@@ -80,13 +76,12 @@ class ViewController: UIViewController {
         if screenNumber.text == "0" || newValue {
             screenNumber.text = String(digit)
             newValue = false
-            print("Func digitalButton: newValue false")
             operatorButtonOn = false
-            print("Func digitalButton: operatorButtonOn false")
         } else {
             screenNumber.text = screenNumber.text! + String(digit)
         }
         currentValue = Double(screenNumber.text!)!
+        print("digitalButton: currentValue = \(currentValue!)")
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
@@ -140,6 +135,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
+        print("Plus")
         removedOperator = nil
         compilation()
         saveValue()
@@ -148,7 +144,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func minusButton(_ sender: UIButton) {
+        print("Minus")
         removedOperator = nil
+//        equalButtonOn = false
         compilation()
         saveValue()
         equalButtonOn = false
@@ -198,28 +196,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
+        print("РАВНО")
         guard equalButtonOn == false else {
-            compilation()
+            compilation() // При повторном нажатии на равно
+            operatorButtonOn = false
+            print("Равно: Сработал первый guard и число на экране равно savedValue, т.е. \(savedValue!)")
             return screenNumber.text = String(savedValue!)
         }
         equalButtonOn = true
-        print("Равно: equalButtonOn = \(equalButtonOn)")
         guard operatorButtonOn == false else {
-            compilation()
-            print("Равно: Первая часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
+            compilation() // При активной клавише оператора
+            print("Равно: Сработал второй guard и число на экране равно savedValue, т.е. \(savedValue!)")
             return screenNumber.text = String(savedValue!)
         }
         
         guard savedValue != nil else { return }
-        compilation()
+        compilation() // Если клавиша оператора и клавиша равно не активны
         screenNumber.text = String(savedValue!)
         removedOperator = operatorsArray.removeLast()
-        print("Равно: removdOperator = \(removedOperator!)")
         operatorsArray = []
         newValue = true
-        print("Равно: Второя часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
-        print("Равно: equalButtonOn = \(equalButtonOn)")
-
+        print("Равно: Сработал третий guard и число на экране равно savedValue, т.е. \(savedValue!)")
     }
 }
 
