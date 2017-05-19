@@ -171,6 +171,21 @@ class ViewController: UIViewController {
         operatorsArray.append("/")
     }
     
+    @IBAction func registrChangeKey(_ sender: UIButton) {
+    }
+    
+    @IBAction func percentKey(_ sender: UIButton) {
+        guard savedValue != nil else { return }
+        compilation()
+        savedValue! /= 100
+        screenNumber.text = String(savedValue!)
+        operatorsArray = []
+        newValue = true
+    }
+    
+    @IBAction func squareRootKey(_ sender: UIButton) {
+    }
+    
     @IBAction func equalButton(_ sender: UIButton) {
         guard equalButtonOn == false else {
             compilation()
@@ -182,6 +197,8 @@ class ViewController: UIViewController {
             print("Равно: Первая часть. savedValue = \(savedValue!). currentValue = \(currentValue!)")
             return screenNumber.text = String(savedValue!)
         }
+        
+        guard savedValue != nil else { return }
         compilation()
         screenNumber.text = String(savedValue!)
         removedOperator = operatorsArray.removeLast()
