@@ -36,6 +36,16 @@ class ViewController: UIViewController {
         print("digitalButton: currentValue = \(currentValue!)")
     }
     
+    @IBAction func operatorKey(_ sender: UIButton) {
+        let _operatorKey = sender.currentTitle
+        print("Key \(_operatorKey!)")
+        removedOperator = nil
+        compilation()
+        saveValue()
+        equalButtonOn = false
+        operatorsArray.append(_operatorKey!)
+    }
+    
     func compilation() {
         // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
         guard operatorButtonOn == false || equalButtonOn else {
@@ -60,9 +70,9 @@ class ViewController: UIViewController {
             savedValue! += currentValue!
         case _operatorButton == "-":
             savedValue! -= currentValue!
-        case _operatorButton == "*":
+        case _operatorButton == "×":
             savedValue! *= currentValue!
-        case _operatorButton == "/":
+        case _operatorButton == "÷":
             savedValue! /= currentValue!
         default:
             print("Compilation false")
@@ -93,41 +103,6 @@ class ViewController: UIViewController {
         savedValue = nil
         currentValue = nil
         displayResultLabel.text = "0"
-    }
-    
-    @IBAction func plusButton(_ sender: UIButton) {
-        print("Plus")
-        removedOperator = nil
-        compilation()
-        saveValue()
-        equalButtonOn = false
-        operatorsArray.append("+")
-    }
-    
-    @IBAction func minusButton(_ sender: UIButton) {
-        print("Minus")
-        removedOperator = nil
-//        equalButtonOn = false
-        compilation()
-        saveValue()
-        equalButtonOn = false
-        operatorsArray.append("-")
-    }
-    
-    @IBAction func multiplyButton(_ sender: UIButton) {
-        removedOperator = nil
-        compilation()
-        saveValue()
-        equalButtonOn = false
-        operatorsArray.append("*")
-    }
-    
-    @IBAction func divisionButton(_ sender: UIButton) {
-        removedOperator = nil
-        compilation()
-        saveValue()
-        equalButtonOn = false
-        operatorsArray.append("/")
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
