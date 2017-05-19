@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var screenNumber: UILabel!
+    @IBOutlet weak var displayResultLabel: UILabel!
     
     var operatorsArray: [String] = []
     var removedOperator: String?
@@ -19,10 +19,21 @@ class ViewController: UIViewController {
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
     var savedValue: Double?
     var currentValue: Double?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBAction func pressedDigitalButton(_ sender: UIButton) {
+        let number = sender.currentTitle
+        
+        guard (displayResultLabel.text?.characters.count)! < 19 else { return }
+        
+        if displayResultLabel.text == "0" || newValue {
+            displayResultLabel.text = number
+            newValue = false
+            operatorButtonOn = false
+        } else {
+            displayResultLabel.text = displayResultLabel.text! + number!
+        }
+        currentValue = Double(displayResultLabel.text!)!
+        print("digitalButton: currentValue = \(currentValue!)")
     }
     
     func compilation() {
@@ -65,25 +76,13 @@ class ViewController: UIViewController {
             newValue = true
             operatorButtonOn = true
             if savedValue != nil && equalButtonOn == false {
-                screenNumber.text = String(savedValue!)
-                print("saveValue: screenNumber = savedValue = \(savedValue!)")
+                displayResultLabel.text = String(savedValue!)
+                print("saveValue: displayResultLabel = savedValue = \(savedValue!)")
             } else {
-                savedValue = Double(screenNumber.text!)!
-                print("saveValue: savedValue = screenNumber = \(savedValue!)")
+                savedValue = Double(displayResultLabel.text!)!
+                print("saveValue: savedValue = displayResultLabel = \(savedValue!)")
             }
         }
-    }
-    
-    func digitalButton(_ digit: Int) {
-        if screenNumber.text == "0" || newValue {
-            screenNumber.text = String(digit)
-            newValue = false
-            operatorButtonOn = false
-        } else {
-            screenNumber.text = screenNumber.text! + String(digit)
-        }
-        currentValue = Double(screenNumber.text!)!
-        print("digitalButton: currentValue = \(currentValue!)")
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
@@ -93,47 +92,7 @@ class ViewController: UIViewController {
         operatorButtonOn = false
         savedValue = nil
         currentValue = nil
-        screenNumber.text = "0"
-    }
-    
-    @IBAction func zeroButton(_ sender: UIButton) {
-        digitalButton(0)
-    }
-    
-    @IBAction func oneButton(_ sender: UIButton) {
-        digitalButton(1)
-    }
-    
-    @IBAction func twoButton(_ sender: UIButton) {
-        digitalButton(2)
-    }
-    
-    @IBAction func threeButton(_ sender: UIButton) {
-        digitalButton(3)
-    }
-    
-    @IBAction func fourButton(_ sender: UIButton) {
-        digitalButton(4)
-    }
-    
-    @IBAction func fiveButton(_ sender: UIButton) {
-        digitalButton(5)
-    }
-    
-    @IBAction func sixButton(_ sender: UIButton) {
-        digitalButton(6)
-    }
-    
-    @IBAction func sevenButton(_ sender: UIButton) {
-        digitalButton(7)
-    }
-    
-    @IBAction func eightButton(_ sender: UIButton) {
-        digitalButton(8)
-    }
-    
-    @IBAction func nineButton(_ sender: UIButton) {
-        digitalButton(9)
+        displayResultLabel.text = "0"
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
@@ -172,8 +131,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
-        screenNumber.text = String(Double(screenNumber.text!)!*(-1))
-        currentValue = Double(screenNumber.text!)!
+        displayResultLabel.text = String(Double(displayResultLabel.text!)!*(-1))
+        currentValue = Double(displayResultLabel.text!)!
     }
     
     @IBAction func percentKey(_ sender: UIButton) {
@@ -188,7 +147,7 @@ class ViewController: UIViewController {
             currentValue = savedValue!/100 * currentValue!
             compilation()
         }
-        screenNumber.text = String(savedValue!)
+        displayResultLabel.text = String(savedValue!)
         operatorsArray = []
         newValue = true
         equalButtonOn = true
@@ -203,18 +162,18 @@ class ViewController: UIViewController {
             compilation() // При повторном нажатии на равно
             operatorButtonOn = false
             print("Равно: Сработал первый guard и число на экране равно savedValue, т.е. \(savedValue!)")
-            return screenNumber.text = String(savedValue!)
+            return displayResultLabel.text = String(savedValue!)
         }
         equalButtonOn = true
         guard operatorButtonOn == false else {
             compilation() // При активной клавише оператора
             print("Равно: Сработал второй guard и число на экране равно savedValue, т.е. \(savedValue!)")
-            return screenNumber.text = String(savedValue!)
+            return displayResultLabel.text = String(savedValue!)
         }
         
         guard savedValue != nil else { return }
         compilation() // Если клавиша оператора и клавиша равно не активны
-        screenNumber.text = String(savedValue!)
+        displayResultLabel.text = String(savedValue!)
         removedOperator = operatorsArray.removeLast()
         operatorsArray = []
         newValue = true
