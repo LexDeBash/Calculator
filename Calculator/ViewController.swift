@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayResultLabel: UILabel!
     
     var operatorsArray: [String] = []
-    var removedOperator: String?
+    var lastOperator: String?
     var equalButtonOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
@@ -37,12 +37,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
-        let lastOperator = sender.currentTitle
-        print("Key \(lastOperator!)")
-        removedOperator = nil
+        lastOperator = nil
         compilation()
         saveValue()
         equalButtonOn = false
+        lastOperator = sender.currentTitle
+        print("Key \(lastOperator!)")
         operatorsArray.append(lastOperator!)
     }
     
@@ -54,14 +54,14 @@ class ViewController: UIViewController {
         }
         
         // Выходим из функции при пустом массиве операторов или если последний оператор не сохранен
-        guard operatorsArray.isEmpty == false || removedOperator != nil else {
+        guard operatorsArray.isEmpty == false || lastOperator != nil else {
             print("Compilation: Second guard")
             return
         }
         
         var _operatorButton = ""
-        if removedOperator != nil {
-            _operatorButton = removedOperator! // Извлекаем сохраненный оператор
+        if lastOperator != nil {
+            _operatorButton = lastOperator! // Извлекаем сохраненный оператор
         } else {
             _operatorButton = operatorsArray.last! // Если сорхраненного оператора нет, берем последний оператор из массива
         }
@@ -149,7 +149,6 @@ class ViewController: UIViewController {
         guard savedValue != nil else { return }
         compilation() // Если клавиша оператора и клавиша равно не активны
         displayResultLabel.text = String(savedValue!)
-        removedOperator = operatorsArray.removeLast()
         operatorsArray = []
         newValue = true
         print("Равно: Сработал третий guard и число на экране равно savedValue, т.е. \(savedValue!)")
