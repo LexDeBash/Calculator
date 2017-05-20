@@ -60,6 +60,69 @@ class ViewController: UIViewController {
         operatorsArray.append(lastOperator)
     }
     
+    @IBAction func registrChangeKey(_ sender: UIButton) {
+        displayResultLabel.text = String(Double(displayResultLabel.text!)!*(-1))
+        currentOperand = currentInput
+    }
+    
+    @IBAction func percentKey(_ sender: UIButton) {
+        guard savedValue != nil else { return }
+        if operatorsArray.last == "×" {
+            compilation()
+            savedValue! /= 100
+        } else if operatorsArray.last == "÷" {
+            compilation()
+            savedValue! *= 100
+        }else {
+            currentOperand = savedValue!/100 * currentOperand!
+            compilation()
+        }
+        currentInput = savedValue!
+        operatorsArray = []
+        newValue = true
+        equalButtonOn = true
+    }
+    
+    @IBAction func squareRootKey(_ sender: UIButton) {
+        currentInput = sqrt(currentInput)
+        newValue = true
+        savedValue = nil
+    }
+    
+    @IBAction func equalButton(_ sender: UIButton) {
+        print("РАВНО")
+        guard !equalButtonOn else {
+            compilation() // При повторном нажатии на равно
+            operatorButtonOn = false
+            print("Равно: Сработал первый guard и число на экране равно savedValue, т.е. \(savedValue!)")
+            return currentInput = savedValue!
+        }
+        equalButtonOn = true
+        guard !operatorButtonOn else {
+            compilation() // При активной клавише оператора
+            print("Равно: Сработал второй guard и число на экране равно savedValue, т.е. \(savedValue!)")
+            return currentInput = savedValue!
+        }
+        
+        guard savedValue != nil else { return }
+        compilation() // Если клавиша оператора и клавиша равно не активны
+        currentInput = savedValue!
+        operatorsArray = []
+        newValue = true
+        print("Равно: Сработал третий guard и число на экране равно savedValue, т.е. \(savedValue!)")
+    }
+    
+    @IBAction func resetButton(_ sender: UIButton) {
+        operatorsArray = []
+        equalButtonOn = false
+        newValue = false
+        operatorButtonOn = false
+        savedValue = nil
+        currentOperand = nil
+        displayResultLabel.text = "0"
+        currentInput = 0
+    }
+    
     func compilation() {
         // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
         guard !operatorButtonOn || equalButtonOn else {
@@ -107,66 +170,6 @@ class ViewController: UIViewController {
                 print("saveValue: savedValue = displayResultLabel = \(savedValue!)")
             }
         }
-    }
-    
-    @IBAction func resetButton(_ sender: UIButton) {
-        operatorsArray = []
-        equalButtonOn = false
-        newValue = false
-        operatorButtonOn = false
-        savedValue = nil
-        currentOperand = nil
-        displayResultLabel.text = "0"
-        currentInput = 0
-    }
-    
-    @IBAction func registrChangeKey(_ sender: UIButton) {
-        displayResultLabel.text = String(Double(displayResultLabel.text!)!*(-1))
-        currentOperand = currentInput
-    }
-    
-    @IBAction func percentKey(_ sender: UIButton) {
-        guard savedValue != nil else { return }
-        if operatorsArray.last == "×" {
-            compilation()
-            savedValue! /= 100
-        } else if operatorsArray.last == "÷" {
-            compilation()
-            savedValue! *= 100
-        }else {
-            currentOperand = savedValue!/100 * currentOperand!
-            compilation()
-        }
-        currentInput = savedValue!
-        operatorsArray = []
-        newValue = true
-        equalButtonOn = true
-    }
-    
-    @IBAction func squareRootKey(_ sender: UIButton) {
-    }
-    
-    @IBAction func equalButton(_ sender: UIButton) {
-        print("РАВНО")
-        guard !equalButtonOn else {
-            compilation() // При повторном нажатии на равно
-            operatorButtonOn = false
-            print("Равно: Сработал первый guard и число на экране равно savedValue, т.е. \(savedValue!)")
-            return currentInput = savedValue!
-        }
-        equalButtonOn = true
-        guard !operatorButtonOn else {
-            compilation() // При активной клавише оператора
-            print("Равно: Сработал второй guard и число на экране равно savedValue, т.е. \(savedValue!)")
-            return currentInput = savedValue!
-        }
-        
-        guard savedValue != nil else { return }
-        compilation() // Если клавиша оператора и клавиша равно не активны
-        currentInput = savedValue!
-        operatorsArray = []
-        newValue = true
-        print("Равно: Сработал третий guard и число на экране равно savedValue, т.е. \(savedValue!)")
     }
 }
 
