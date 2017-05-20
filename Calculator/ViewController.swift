@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
-        displayResultLabel.text = String(Double(displayResultLabel.text!)!*(-1))
+        currentInput = -currentInput
         currentOperand = currentInput
     }
     
