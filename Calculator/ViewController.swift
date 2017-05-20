@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayResultLabel: UILabel!
     
     var operatorsArray: [String] = []
-    var lastOperator: String?
+    var lastOperator: String = ""
     var equalButtonOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
@@ -51,13 +51,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
-        lastOperator = nil
+        lastOperator = ""
         compilation()
         saveValue()
         equalButtonOn = false
-        lastOperator = sender.currentTitle
-        print("Key \(lastOperator!)")
-        operatorsArray.append(lastOperator!)
+        lastOperator = sender.currentTitle!
+        print("Key \(lastOperator)")
+        operatorsArray.append(lastOperator)
     }
     
     func compilation() {
@@ -68,14 +68,14 @@ class ViewController: UIViewController {
         }
         
         // Выходим из функции при пустом массиве операторов или если последний оператор не сохранен
-        guard !operatorsArray.isEmpty || lastOperator != nil else {
+        guard !operatorsArray.isEmpty || lastOperator != "" else {
             print("Compilation: Second guard")
             return
         }
         
         var _operatorButton = ""
-        if lastOperator != nil {
-            _operatorButton = lastOperator! // Извлекаем сохраненный оператор
+        if lastOperator != "" {
+            _operatorButton = lastOperator // Извлекаем сохраненный оператор
         } else {
             _operatorButton = operatorsArray.last! // Если сорхраненного оператора нет, берем последний оператор из массива
         }
@@ -117,6 +117,7 @@ class ViewController: UIViewController {
         savedValue = nil
         secondOperand = nil
         displayResultLabel.text = "0"
+        currentInput = 0
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
