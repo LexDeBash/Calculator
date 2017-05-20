@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
     var savedValue: Double?
-    var secondOperand: Double?
+    var currentOperand: Double?
     var currentInput: Double {
         get {
             return Double(displayResultLabel.text!)!
@@ -46,8 +46,8 @@ class ViewController: UIViewController {
         } else {
             displayResultLabel.text = displayResultLabel.text! + number!
         }
-        secondOperand = currentInput
-        print("digitalButton: secondOperand = \(secondOperand!)")
+        currentOperand = currentInput
+        print("digitalButton: secondOperand = \(currentOperand!)")
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
@@ -81,18 +81,18 @@ class ViewController: UIViewController {
         }
         switch true {
         case _operatorButton == "+":
-            savedValue! += secondOperand!
+            savedValue! += currentOperand!
         case _operatorButton == "-":
-            savedValue! -= secondOperand!
+            savedValue! -= currentOperand!
         case _operatorButton == "×":
-            savedValue! *= secondOperand!
+            savedValue! *= currentOperand!
         case _operatorButton == "÷":
-            savedValue! /= secondOperand!
+            savedValue! /= currentOperand!
         default:
             print("Compilation false")
             break
         }
-        print("Compilation: saveValue = \(savedValue!), secondOperand = \(secondOperand!)")
+        print("Compilation: saveValue = \(savedValue!), secondOperand = \(currentOperand!)")
     }
     
     func saveValue() {
@@ -115,14 +115,14 @@ class ViewController: UIViewController {
         newValue = false
         operatorButtonOn = false
         savedValue = nil
-        secondOperand = nil
+        currentOperand = nil
         displayResultLabel.text = "0"
         currentInput = 0
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
         displayResultLabel.text = String(Double(displayResultLabel.text!)!*(-1))
-        secondOperand = currentInput
+        currentOperand = currentInput
     }
     
     @IBAction func percentKey(_ sender: UIButton) {
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
             compilation()
             savedValue! *= 100
         }else {
-            secondOperand = savedValue!/100 * secondOperand!
+            currentOperand = savedValue!/100 * currentOperand!
             compilation()
         }
         currentInput = savedValue!
