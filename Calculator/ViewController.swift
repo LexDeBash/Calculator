@@ -18,7 +18,21 @@ class ViewController: UIViewController {
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
     var savedValue: Double?
-    var currentValue: Double?
+    var secondOperand: Double?
+    var currentInput: Double {
+        get {
+            return Double(displayResultLabel.text!)!
+        }
+        set {
+            let value = "\(newValue)"
+            let valueArray = value.components(separatedBy: ".")
+            if valueArray[1] == "0" {
+                displayResultLabel.text = "\(valueArray[0])"
+            } else {
+                displayResultLabel.text = "\(newValue)"
+            }
+        }
+    }
     
     @IBAction func pressedDigitalButton(_ sender: UIButton) {
         let number = sender.currentTitle
@@ -32,8 +46,8 @@ class ViewController: UIViewController {
         } else {
             displayResultLabel.text = displayResultLabel.text! + number!
         }
-        currentValue = Double(displayResultLabel.text!)!
-        print("digitalButton: currentValue = \(currentValue!)")
+        secondOperand = currentInput
+        print("digitalButton: secondOperand = \(secondOperand!)")
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
@@ -48,13 +62,13 @@ class ViewController: UIViewController {
     
     func compilation() {
         // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
-        guard operatorButtonOn == false || equalButtonOn else {
+        guard !operatorButtonOn || equalButtonOn else {
             print("Compilation: First guard")
             return
         }
         
         // Выходим из функции при пустом массиве операторов или если последний оператор не сохранен
-        guard operatorsArray.isEmpty == false || lastOperator != nil else {
+        guard !operatorsArray.isEmpty || lastOperator != nil else {
             print("Compilation: Second guard")
             return
         }
@@ -67,29 +81,29 @@ class ViewController: UIViewController {
         }
         switch true {
         case _operatorButton == "+":
-            savedValue! += currentValue!
+            savedValue! += secondOperand!
         case _operatorButton == "-":
-            savedValue! -= currentValue!
+            savedValue! -= secondOperand!
         case _operatorButton == "×":
-            savedValue! *= currentValue!
+            savedValue! *= secondOperand!
         case _operatorButton == "÷":
-            savedValue! /= currentValue!
+            savedValue! /= secondOperand!
         default:
             print("Compilation false")
             break
         }
-        print("Compilation: saveValue = \(savedValue!), currentValue = \(currentValue!)")
+        print("Compilation: saveValue = \(savedValue!), secondOperand = \(secondOperand!)")
     }
     
     func saveValue() {
-        if operatorButtonOn == false {
+        if !operatorButtonOn {
             newValue = true
             operatorButtonOn = true
-            if savedValue != nil && equalButtonOn == false {
-                displayResultLabel.text = String(savedValue!)
+            if savedValue != nil && !equalButtonOn {
+                currentInput = savedValue!
                 print("saveValue: displayResultLabel = savedValue = \(savedValue!)")
             } else {
-                savedValue = Double(displayResultLabel.text!)!
+                savedValue = currentInput
                 print("saveValue: savedValue = displayResultLabel = \(savedValue!)")
             }
         }
@@ -101,13 +115,13 @@ class ViewController: UIViewController {
         newValue = false
         operatorButtonOn = false
         savedValue = nil
-        currentValue = nil
+        secondOperand = nil
         displayResultLabel.text = "0"
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
         displayResultLabel.text = String(Double(displayResultLabel.text!)!*(-1))
-        currentValue = Double(displayResultLabel.text!)!
+        secondOperand = currentInput
     }
     
     @IBAction func percentKey(_ sender: UIButton) {
@@ -119,10 +133,10 @@ class ViewController: UIViewController {
             compilation()
             savedValue! *= 100
         }else {
-            currentValue = savedValue!/100 * currentValue!
+            secondOperand = savedValue!/100 * secondOperand!
             compilation()
         }
-        displayResultLabel.text = String(savedValue!)
+        currentInput = savedValue!
         operatorsArray = []
         newValue = true
         equalButtonOn = true
@@ -133,22 +147,22 @@ class ViewController: UIViewController {
     
     @IBAction func equalButton(_ sender: UIButton) {
         print("РАВНО")
-        guard equalButtonOn == false else {
+        guard !equalButtonOn else {
             compilation() // При повторном нажатии на равно
             operatorButtonOn = false
             print("Равно: Сработал первый guard и число на экране равно savedValue, т.е. \(savedValue!)")
-            return displayResultLabel.text = String(savedValue!)
+            return currentInput = savedValue!
         }
         equalButtonOn = true
-        guard operatorButtonOn == false else {
+        guard !operatorButtonOn else {
             compilation() // При активной клавише оператора
             print("Равно: Сработал второй guard и число на экране равно savedValue, т.е. \(savedValue!)")
-            return displayResultLabel.text = String(savedValue!)
+            return currentInput = savedValue!
         }
         
         guard savedValue != nil else { return }
         compilation() // Если клавиша оператора и клавиша равно не активны
-        displayResultLabel.text = String(savedValue!)
+        currentInput = savedValue!
         operatorsArray = []
         newValue = true
         print("Равно: Сработал третий guard и число на экране равно savedValue, т.е. \(savedValue!)")
