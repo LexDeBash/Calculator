@@ -60,6 +60,7 @@
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="-"/>
                                         <connections>
+                                            <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wNM-0A-jhs"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XLq-mO-Fo4"/>
                                         </connections>
                                     </button>
@@ -92,6 +93,7 @@
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="×"/>
                                         <connections>
+                                            <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OGe-2Y-J8n"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s8v-nF-99i"/>
                                         </connections>
                                     </button>
@@ -124,6 +126,7 @@
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="÷"/>
                                         <connections>
+                                            <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cQf-D3-1Dd"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TAH-h6-BUk"/>
                                         </connections>
                                     </button>
@@ -147,6 +150,9 @@
                                         <rect key="frame" x="188" y="409" width="92.5" height="101"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="40"/>
                                         <state key="normal" title="."/>
+                                        <connections>
+                                            <action selector="dotButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VBv-Ce-Q24"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BQ-YL-9fk">
                                         <rect key="frame" x="281.5" y="409" width="92.5" height="101"/>
@@ -185,6 +191,7 @@
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="+"/>
                                         <connections>
+                                            <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBX-tY-QL2"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Al5-cM-hsz"/>
                                         </connections>
                                     </button>
