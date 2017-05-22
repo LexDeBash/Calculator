@@ -47,7 +47,6 @@ class ViewController: UIViewController {
             displayResultLabel.text = displayResultLabel.text! + number!
         }
         currentOperand = currentInput
-        print("digitalButton: secondOperand = \(currentOperand!)")
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
@@ -56,7 +55,6 @@ class ViewController: UIViewController {
         saveValue()
         equalButtonOn = false
         lastOperator = sender.currentTitle!
-        print("Key \(lastOperator)")
         operatorsArray.append(lastOperator)
     }
     
@@ -90,17 +88,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
-        print("РАВНО")
         guard !equalButtonOn else {
             compilation() // При повторном нажатии на равно
             operatorButtonOn = false
-            print("Равно: Сработал первый guard и число на экране равно savedValue, т.е. \(savedValue!)")
             return currentInput = savedValue!
         }
         equalButtonOn = true
         guard !operatorButtonOn else {
             compilation() // При активной клавише оператора
-            print("Равно: Сработал второй guard и число на экране равно savedValue, т.е. \(savedValue!)")
             return currentInput = savedValue!
         }
         
@@ -109,7 +104,6 @@ class ViewController: UIViewController {
         currentInput = savedValue!
         operatorsArray = []
         newValue = true
-        print("Равно: Сработал третий guard и число на экране равно savedValue, т.е. \(savedValue!)")
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
@@ -126,13 +120,11 @@ class ViewController: UIViewController {
     func compilation() {
         // Отключаем многократное нажатие на функциональные клавиши, за исключением равно
         guard !operatorButtonOn || equalButtonOn else {
-            print("Compilation: First guard")
             return
         }
         
         // Выходим из функции при пустом массиве операторов или если последний оператор не сохранен
         guard !operatorsArray.isEmpty || lastOperator != "" else {
-            print("Compilation: Second guard")
             return
         }
         
@@ -152,10 +144,8 @@ class ViewController: UIViewController {
         case _operatorButton == "÷":
             savedValue! /= currentOperand!
         default:
-            print("Compilation false")
             break
         }
-        print("Compilation: saveValue = \(savedValue!), secondOperand = \(currentOperand!)")
     }
     
     func saveValue() {
@@ -164,10 +154,8 @@ class ViewController: UIViewController {
             operatorButtonOn = true
             if savedValue != nil && !equalButtonOn {
                 currentInput = savedValue!
-                print("saveValue: displayResultLabel = savedValue = \(savedValue!)")
             } else {
                 savedValue = currentInput
-                print("saveValue: savedValue = displayResultLabel = \(savedValue!)")
             }
         }
     }
