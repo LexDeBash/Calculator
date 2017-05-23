@@ -53,10 +53,40 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    @IBAction func changeColorWhileButtonPressed(_ sender: UIButton) {
-        sender.setBackgroundColor(color: .red, forState: .highlighted)
+    @IBAction func resetButton(_ sender: UIButton) {
+        operatorsArray = []
+        equalButtonOn = false
+        dotButtonOn = false
+        newValue = false
+        operatorButtonOn = false
+        savedValue = nil
+        currentOperand = nil
+        displayResultLabel.text = "0"
+        currentInput = 0
     }
     
+    @IBAction func registrChangeKey(_ sender: UIButton) {
+        currentInput = -currentInput
+        currentOperand = currentInput
+    }
+    
+    @IBAction func percentKey(_ sender: UIButton) {
+        guard savedValue != nil else { return }
+        if operatorsArray.last == "×" {
+            compilation()
+            savedValue! /= 100
+        } else if operatorsArray.last == "÷" {
+            compilation()
+            savedValue! *= 100
+        }else {
+            currentOperand = savedValue!/100 * currentOperand!
+            compilation()
+        }
+        currentInput = savedValue!
+        operatorsArray = []
+        newValue = true
+        equalButtonOn = true
+    }
     
     @IBAction func pressedDigitalButton(_ sender: UIButton) {
         let number = sender.currentTitle
@@ -83,33 +113,19 @@ class ViewController: UIViewController {
         operatorsArray.append(lastOperator)
     }
     
-    @IBAction func registrChangeKey(_ sender: UIButton) {
-        currentInput = -currentInput
-        currentOperand = currentInput
-    }
-    
-    @IBAction func percentKey(_ sender: UIButton) {
-        guard savedValue != nil else { return }
-        if operatorsArray.last == "×" {
-            compilation()
-            savedValue! /= 100
-        } else if operatorsArray.last == "÷" {
-            compilation()
-            savedValue! *= 100
-        }else {
-            currentOperand = savedValue!/100 * currentOperand!
-            compilation()
-        }
-        currentInput = savedValue!
-        operatorsArray = []
-        newValue = true
-        equalButtonOn = true
-    }
-    
     @IBAction func squareRootKey(_ sender: UIButton) {
         currentInput = sqrt(currentInput)
         newValue = true
         savedValue = nil
+    }
+    
+    @IBAction func dotButton(_ sender: UIButton) {
+        if !newValue && !dotButtonOn {
+            displayResultLabel.text = displayResultLabel.text! + "."
+            dotButtonOn = true
+        } else if newValue && !dotButtonOn {
+            displayResultLabel.text = "0."
+        }
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
@@ -132,25 +148,8 @@ class ViewController: UIViewController {
         dotButtonOn = false
     }
     
-    @IBAction func dotButton(_ sender: UIButton) {
-        if !newValue && !dotButtonOn {
-            displayResultLabel.text = displayResultLabel.text! + "."
-            dotButtonOn = true
-        } else if newValue && !dotButtonOn {
-            displayResultLabel.text = "0."
-        }
-    }
-    
-    @IBAction func resetButton(_ sender: UIButton) {
-        operatorsArray = []
-        equalButtonOn = false
-        dotButtonOn = false
-        newValue = false
-        operatorButtonOn = false
-        savedValue = nil
-        currentOperand = nil
-        displayResultLabel.text = "0"
-        currentInput = 0
+    @IBAction func changeColorWhileButtonPressed(_ sender: UIButton) {
+        sender.setBackgroundColor(color: .red, forState: .highlighted)
     }
     
     func compilation() {
