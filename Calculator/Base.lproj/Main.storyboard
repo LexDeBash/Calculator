@@ -39,6 +39,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="qWB-mc-DQT"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CbR-p2-q8L"/>
                                         </connections>
                                     </button>
@@ -50,6 +51,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="C6m-6G-q5u"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ebu-7J-IP1"/>
                                         </connections>
                                     </button>
@@ -61,6 +63,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="NBm-nW-kCq"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rai-JG-nea"/>
                                         </connections>
                                     </button>
@@ -72,10 +75,11 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="F0A-uh-fx7"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XLq-mO-Fo4"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJ2-I6-pdm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJ2-I6-pdm">
                                         <rect key="frame" x="1" y="205" width="92.5" height="101"/>
                                         <color key="backgroundColor" red="0.23864680528640747" green="0.53585547208786011" blue="0.80168288946151733" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
@@ -83,6 +87,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="an2-Fc-CIa"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ClU-MB-WBC"/>
                                         </connections>
                                     </button>
@@ -94,7 +99,8 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Myt-OA-ves"/>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="wPw-XL-OlT"/>
+                                            <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FD7-2i-149"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-6M-rPI">
@@ -105,6 +111,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Vb4-LG-GKe"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eDn-Yy-TJO"/>
                                         </connections>
                                     </button>
@@ -116,6 +123,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="fSN-wf-pA8"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s8v-nF-99i"/>
                                         </connections>
                                     </button>
@@ -127,6 +135,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="201-nz-ZFf"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="afE-Qc-52r"/>
                                         </connections>
                                     </button>
@@ -138,6 +147,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="rNk-sn-2mO"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DKk-4T-uJd"/>
                                         </connections>
                                     </button>
@@ -149,6 +159,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="IMs-ly-HDu"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GdE-bi-gzG"/>
                                         </connections>
                                     </button>
@@ -160,6 +171,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="LiS-Kg-IE7"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TAH-h6-BUk"/>
                                         </connections>
                                     </button>
@@ -171,6 +183,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="pq4-ML-O73"/>
                                             <action selector="squareRootKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hmc-la-LDJ"/>
                                         </connections>
                                     </button>
@@ -182,6 +195,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="beo-Dg-453"/>
                                             <action selector="pressedDigitalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TRi-RC-Cix"/>
                                         </connections>
                                     </button>
@@ -192,6 +206,10 @@
                                         <state key="normal" title=".">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="qK5-bK-lF1"/>
+                                            <action selector="dotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pWy-uS-bCi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BQ-YL-9fk">
                                         <rect key="frame" x="281.5" y="409" width="92.5" height="101"/>
@@ -201,6 +219,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="ZPT-Kh-88j"/>
                                             <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OgN-Qf-LsA"/>
                                         </connections>
                                     </button>
@@ -212,6 +231,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="QXf-kJ-ZWa"/>
                                             <action selector="resetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uAo-x8-Pcr"/>
                                         </connections>
                                     </button>
@@ -223,6 +243,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="REg-qH-cra"/>
                                             <action selector="registrChangeKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHW-DN-MDY"/>
                                         </connections>
                                     </button>
@@ -234,6 +255,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Txl-jt-eTH"/>
                                             <action selector="percentKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cZi-E4-Z0B"/>
                                         </connections>
                                     </button>
@@ -245,6 +267,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="GiS-IN-ACE"/>
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Al5-cM-hsz"/>
                                         </connections>
                                     </button>

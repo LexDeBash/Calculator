@@ -52,6 +52,11 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
+    @IBAction func changeColorWhileButtonPressed(_ sender: UIButton) {
+        sender.setBackgroundColor(color: .red, forState: .highlighted)
+    }
+    
+    
     @IBAction func pressedDigitalButton(_ sender: UIButton) {
         let number = sender.currentTitle
         
@@ -124,6 +129,9 @@ class ViewController: UIViewController {
         newValue = true
     }
     
+    @IBAction func dotButton(_ sender: UIButton) {
+    }
+    
     @IBAction func resetButton(_ sender: UIButton) {
         operatorsArray = []
         equalButtonOn = false
@@ -178,4 +186,14 @@ class ViewController: UIViewController {
         }
     }
 }
+
+extension UIButton {
+    func setBackgroundColor(color: UIColor, forState: UIControlState) {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
+        UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.setBackgroundImage(colorImage, for: forState)
+    }}
 
