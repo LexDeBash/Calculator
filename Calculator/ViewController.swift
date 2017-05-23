@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var operatorsArray: [String] = []
     var lastOperator: String = ""
     var equalButtonOn = false
+    var dotButtonOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
     var savedValue: Double?
@@ -77,6 +78,7 @@ class ViewController: UIViewController {
         compilation()
         saveValue()
         equalButtonOn = false
+        dotButtonOn = false
         lastOperator = sender.currentTitle!
         operatorsArray.append(lastOperator)
     }
@@ -127,14 +129,22 @@ class ViewController: UIViewController {
         currentInput = savedValue!
         operatorsArray = []
         newValue = true
+        dotButtonOn = false
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
+        if !newValue && !dotButtonOn {
+            displayResultLabel.text = displayResultLabel.text! + "."
+            dotButtonOn = true
+        } else if newValue && !dotButtonOn {
+            displayResultLabel.text = "0."
+        }
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
         operatorsArray = []
         equalButtonOn = false
+        dotButtonOn = false
         newValue = false
         operatorButtonOn = false
         savedValue = nil
