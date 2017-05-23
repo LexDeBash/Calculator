@@ -34,6 +34,10 @@ class ViewController: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBAction func pressedDigitalButton(_ sender: UIButton) {
         let number = sender.currentTitle
         
