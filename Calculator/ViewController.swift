@@ -31,6 +31,20 @@ class ViewController: UIViewController {
             } else {
                 displayResultLabel.text = "\(newValue)"
             }
+            
+            // Сохраняем значение на экране, для восстановления при следующем запуске приложения
+            let defaults = UserDefaults.standard
+            defaults.setValue(displayResultLabel.text, forKey: "currentInput")
+        }
+    }
+    
+    override func viewDidLoad() {
+        super .viewDidLoad()
+        
+        // Восстанавливаем последнее значение, которе было на экране
+        let defaults = UserDefaults.standard
+        if let savedValue = defaults.string(forKey: "currentInput") {
+            currentInput = Double(savedValue)!
         }
     }
     
