@@ -79,6 +79,10 @@ class ViewController: UIViewController {
         firstOperand = currentInput
         stillTyping = false
         dotIsPlaced = false
+        if !equalButtonOn {
+            equalitySingPressed()
+        }
+        equalButtonOn = false
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
@@ -117,9 +121,20 @@ class ViewController: UIViewController {
 //        savedValue = nil
     }
     
-    func equalitySingPressed(operation: (Double, Double) -> Double) {
-        currentInput = operation(firstOperand, secondOperand)
+    func equalitySingPressed() {
         stillTyping = false
+        
+        switch true {
+        case operationSing == "+":
+            currentInput = firstOperand + secondOperand
+        case operationSing == "-":
+            currentInput = firstOperand - secondOperand
+        case operationSing == "×":
+            currentInput = firstOperand * secondOperand
+        case operationSing == "÷":
+            currentInput = firstOperand / secondOperand
+        default: break
+        }
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
@@ -128,18 +143,20 @@ class ViewController: UIViewController {
         }
         
         dotIsPlaced = false
+        equalButtonOn = true
+        equalitySingPressed()
         
-        switch operationSing {
-        case "+":
-            equalitySingPressed{$0 + $1}
-        case "-":
-            equalitySingPressed{$0 - $1}
-        case "×":
-            equalitySingPressed{$0 * $1}
-        case "÷":
-            equalitySingPressed{$0 / $1}
-        default: break
-        }
+//        switch operationSing {
+//        case "+":
+//            equalitySingPressed{$0 + $1}
+//        case "-":
+//            equalitySingPressed{$0 - $1}
+//        case "×":
+//            equalitySingPressed{$0 * $1}
+//        case "÷":
+//            equalitySingPressed{$0 / $1}
+//        default: break
+//        }
 //        print("РАВНО")
 //        guard !equalButtonOn else {
 //            compilation() // При повторном нажатии на равно
@@ -169,6 +186,7 @@ class ViewController: UIViewController {
         displayResultLabel.text = "0"
         stillTyping = false
         dotIsPlaced = false
+        equalButtonOn = false
         operationSing = ""
 //        operatorsArray = []
 //        equalButtonOn = false
