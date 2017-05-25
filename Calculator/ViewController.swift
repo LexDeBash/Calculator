@@ -190,6 +190,10 @@ class ViewController: UIViewController {
         } else if newValue && !dotButtonOn {
             displayResultLabel.text = "0."
         }
+        allClearButton.isHidden = true
+        allClearButton.isEnabled = false
+        clearButton.isHidden = false
+        clearButton.isEnabled = true
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
