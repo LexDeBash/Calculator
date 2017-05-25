@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var displayResultLabel: UILabel!
+    @IBOutlet weak var allClearButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var multiButton: UIButton!
@@ -48,6 +50,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super .viewDidLoad()
         
+        clearButton.isHidden = true
+        clearButton.isEnabled = false
+        
         // Восстанавливаем последнее значение, которое было на экране
         let defaults = UserDefaults.standard
         if let savedValue = defaults.string(forKey: "currentInput") {
@@ -60,7 +65,7 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    @IBAction func resetButton(_ sender: UIButton) {
+    @IBAction func allClearButtonPressed(_ sender: UIButton) {
         operatorsArray = []
         equalButtonOn = false
         dotButtonOn = false
@@ -74,6 +79,15 @@ class ViewController: UIViewController {
         currentOperand = nil
         displayResultLabel.text = "0"
         currentInput = 0
+    }
+    
+    @IBAction func clearButtonPressed(_ sender: UIButton) {
+        displayResultLabel.text = "0"
+        currentInput = 0
+        clearButton.isHidden = true
+        clearButton.isEnabled = false
+        allClearButton.isHidden = false
+        allClearButton.isEnabled = true
     }
     
     @IBAction func registrChangeKey(_ sender: UIButton) {
@@ -121,6 +135,10 @@ class ViewController: UIViewController {
             displayResultLabel.text = displayResultLabel.text! + number!
         }
         currentOperand = currentInput
+        allClearButton.isHidden = true
+        allClearButton.isEnabled = false
+        clearButton.isHidden = false
+        clearButton.isEnabled = true
     }
     
     @IBAction func operatorKey(_ sender: UIButton) {
@@ -131,8 +149,8 @@ class ViewController: UIViewController {
         dotButtonOn = false
         lastOperator = sender.currentTitle!
         operatorsArray.append(lastOperator)
-//        sender.setBackgroundColor(color: activButtonColor, forState: .normal)
         sender.backgroundColor = activButtonColor
+        
         switch lastOperator {
         case "+":
             minusButton.backgroundColor = defaultButtonColor

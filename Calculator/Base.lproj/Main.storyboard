@@ -227,12 +227,12 @@
                                         <rect key="frame" x="1" y="1" width="92.5" height="101"/>
                                         <color key="backgroundColor" red="0.19288247504094982" green="0.4421198666963988" blue="0.65816190799077345" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
-                                        <state key="normal" title="C">
+                                        <state key="normal" title="AC">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="allClearButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4E0-Zq-qFg"/>
                                             <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="QXf-kJ-ZWa"/>
-                                            <action selector="resetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uAo-x8-Pcr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35e-Ec-5ti">
@@ -271,6 +271,18 @@
                                             <action selector="operatorKey:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Al5-cM-hsz"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsW-1W-3Hf">
+                                        <rect key="frame" x="1" y="1" width="92.5" height="101"/>
+                                        <color key="backgroundColor" red="0.192882475" green="0.44211986669999997" blue="0.65816190799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
+                                        <state key="normal" title="C">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeColorWhileButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="EQX-2N-VLJ"/>
+                                            <action selector="clearButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1MB-Mk-5cB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -303,6 +315,7 @@
                                     <constraint firstItem="nuk-UO-cyP" firstAttribute="leading" secondItem="vkG-sd-6r6" secondAttribute="leading" constant="1" id="Jlw-9v-0A8"/>
                                     <constraint firstAttribute="bottom" secondItem="8Ai-n7-rai" secondAttribute="bottom" constant="1" id="KLD-kd-Nmu"/>
                                     <constraint firstItem="iVh-VZ-DFu" firstAttribute="top" secondItem="35e-Ec-5ti" secondAttribute="bottom" constant="1" id="KLX-Oi-Ox5"/>
+                                    <constraint firstItem="dsW-1W-3Hf" firstAttribute="width" secondItem="Zih-2S-qD1" secondAttribute="width" id="KuO-mH-CdE"/>
                                     <constraint firstItem="vu3-6a-4WZ" firstAttribute="top" secondItem="Zih-2S-qD1" secondAttribute="bottom" constant="1" id="MMj-cs-k3n"/>
                                     <constraint firstAttribute="trailing" secondItem="M0w-c5-RFc" secondAttribute="trailing" constant="1" id="N3y-zK-nIg"/>
                                     <constraint firstItem="dLf-qM-8V3" firstAttribute="height" secondItem="Zih-2S-qD1" secondAttribute="height" id="Ou9-Ck-JNf"/>
@@ -339,6 +352,7 @@
                                     <constraint firstItem="9BQ-YL-9fk" firstAttribute="height" secondItem="Zih-2S-qD1" secondAttribute="height" id="bMc-ah-jiy"/>
                                     <constraint firstItem="BiI-AA-adj" firstAttribute="leading" secondItem="7Js-MS-u3p" secondAttribute="trailing" constant="1" id="cLG-QE-g0Y"/>
                                     <constraint firstItem="mgz-P7-BXQ" firstAttribute="width" secondItem="Zih-2S-qD1" secondAttribute="width" id="cwz-d1-Ref"/>
+                                    <constraint firstItem="dsW-1W-3Hf" firstAttribute="height" secondItem="Zih-2S-qD1" secondAttribute="height" id="ddL-E7-2jF"/>
                                     <constraint firstItem="vu3-6a-4WZ" firstAttribute="leading" secondItem="vkG-sd-6r6" secondAttribute="leading" constant="1" id="gW2-XZ-PvH"/>
                                     <constraint firstItem="8Ai-n7-rai" firstAttribute="leading" secondItem="mgz-P7-BXQ" secondAttribute="trailing" constant="1" id="hz9-Rm-Ryf"/>
                                     <constraint firstItem="iVh-VZ-DFu" firstAttribute="width" secondItem="Zih-2S-qD1" secondAttribute="width" id="iNO-wo-TNU"/>
@@ -356,7 +370,9 @@
                                     <constraint firstItem="Kg6-Wp-AOM" firstAttribute="width" secondItem="Zih-2S-qD1" secondAttribute="width" id="qPY-NI-wi7"/>
                                     <constraint firstAttribute="trailing" secondItem="Kg6-Wp-AOM" secondAttribute="trailing" constant="1" id="qkm-dB-w5T"/>
                                     <constraint firstItem="iJ2-I6-pdm" firstAttribute="top" secondItem="vu3-6a-4WZ" secondAttribute="bottom" constant="1" id="sz8-IP-eVm"/>
+                                    <constraint firstItem="dsW-1W-3Hf" firstAttribute="leading" secondItem="vkG-sd-6r6" secondAttribute="leading" constant="1" id="trI-2M-Dz7"/>
                                     <constraint firstItem="dLf-qM-8V3" firstAttribute="top" secondItem="hl8-6M-rPI" secondAttribute="bottom" constant="1" id="u17-kP-WmE"/>
+                                    <constraint firstItem="dsW-1W-3Hf" firstAttribute="top" secondItem="vkG-sd-6r6" secondAttribute="top" constant="1" id="vF1-eq-6q7"/>
                                     <constraint firstAttribute="bottom" secondItem="mgz-P7-BXQ" secondAttribute="bottom" constant="1" id="wXQ-sq-Bii"/>
                                     <constraint firstItem="8Ai-n7-rai" firstAttribute="height" secondItem="Zih-2S-qD1" secondAttribute="height" id="wrY-Uk-wHv"/>
                                     <constraint firstItem="vod-Mo-Ac2" firstAttribute="height" secondItem="Zih-2S-qD1" secondAttribute="height" id="xua-76-5un"/>
@@ -376,6 +392,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="allClearButton" destination="Zih-2S-qD1" id="vfM-Zj-LJN"/>
+                        <outlet property="clearButton" destination="dsW-1W-3Hf" id="rHb-Qs-TxQ"/>
                         <outlet property="displayResultLabel" destination="YVC-FC-OsP" id="TWI-vI-JFn"/>
                         <outlet property="divisionButton" destination="Yh5-Kj-Rsg" id="ZXj-Gl-QcN"/>
                         <outlet property="minusButton" destination="M0w-c5-RFc" id="jEG-fx-FtO"/>
