@@ -69,7 +69,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiI-AA-adj">
                                         <rect key="frame" x="281.5" y="103" width="92.5" height="101"/>
-                                        <color key="backgroundColor" red="0.19288247504094982" green="0.4421198666963988" blue="0.65816190799077345" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.18575434393837134" green="0.42578096202298366" blue="0.63383899132410682" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="25"/>
                                         <state key="normal" title="×">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -377,6 +377,10 @@
                     </view>
                     <connections>
                         <outlet property="displayResultLabel" destination="YVC-FC-OsP" id="TWI-vI-JFn"/>
+                        <outlet property="divisionButton" destination="Yh5-Kj-Rsg" id="ZXj-Gl-QcN"/>
+                        <outlet property="minusButton" destination="M0w-c5-RFc" id="jEG-fx-FtO"/>
+                        <outlet property="multiButton" destination="BiI-AA-adj" id="1ZX-bH-McC"/>
+                        <outlet property="plusButton" destination="Kg6-Wp-AOM" id="PWv-yG-9cx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -11,6 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var displayResultLabel: UILabel!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var multiButton: UIButton!
+    @IBOutlet weak var divisionButton: UIButton!
     
     var operatorsArray: [String] = []
     var lastOperator: String = ""
@@ -18,6 +22,8 @@ class ViewController: UIViewController {
     var dotButtonOn = false
     var newValue = false //Срабатывает после нажатия на любую функциональную клавишу для того чтобы можно было заного набирать цифры после оператора
     var operatorButtonOn = false //Срабатывает после нажатия на любую функциональную клавишу, для того что бы отслеживать, что оператор в данный момнт нажат
+    let defaultButtonColor = UIColor(red: 0.192, green: 0.443, blue: 0.659, alpha: 1)
+    let activButtonColor = UIColor(red: 0, green: 0.302, blue: 0.529, alpha: 1)
     var savedValue: Double?
     var currentOperand: Double?
     var currentInput: Double {
@@ -42,10 +48,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super .viewDidLoad()
         
-        // Восстанавливаем последнее значение, которе было на экране
+        // Восстанавливаем последнее значение, которое было на экране
         let defaults = UserDefaults.standard
         if let savedValue = defaults.string(forKey: "currentInput") {
             currentInput = Double(savedValue)!
+            currentOperand = currentInput
         }
     }
     
@@ -59,6 +66,10 @@ class ViewController: UIViewController {
         dotButtonOn = false
         newValue = false
         operatorButtonOn = false
+        plusButton.backgroundColor = defaultButtonColor
+        minusButton.backgroundColor = defaultButtonColor
+        multiButton.backgroundColor = defaultButtonColor
+        divisionButton.backgroundColor = defaultButtonColor
         savedValue = nil
         currentOperand = nil
         displayResultLabel.text = "0"
@@ -86,6 +97,10 @@ class ViewController: UIViewController {
         operatorsArray = []
         newValue = true
         equalButtonOn = true
+        plusButton.backgroundColor = defaultButtonColor
+        minusButton.backgroundColor = defaultButtonColor
+        multiButton.backgroundColor = defaultButtonColor
+        divisionButton.backgroundColor = defaultButtonColor
     }
     
     @IBAction func pressedDigitalButton(_ sender: UIButton) {
@@ -97,6 +112,11 @@ class ViewController: UIViewController {
             displayResultLabel.text = number
             newValue = false
             operatorButtonOn = false
+            plusButton.backgroundColor = defaultButtonColor
+            minusButton.backgroundColor = defaultButtonColor
+            multiButton.backgroundColor = defaultButtonColor
+            divisionButton.backgroundColor = defaultButtonColor
+
         } else {
             displayResultLabel.text = displayResultLabel.text! + number!
         }
@@ -111,12 +131,38 @@ class ViewController: UIViewController {
         dotButtonOn = false
         lastOperator = sender.currentTitle!
         operatorsArray.append(lastOperator)
+//        sender.setBackgroundColor(color: activButtonColor, forState: .normal)
+        sender.backgroundColor = activButtonColor
+        switch lastOperator {
+        case "+":
+            minusButton.backgroundColor = defaultButtonColor
+            multiButton.backgroundColor = defaultButtonColor
+            divisionButton.backgroundColor = defaultButtonColor
+        case "-":
+            plusButton.backgroundColor = defaultButtonColor
+            multiButton.backgroundColor = defaultButtonColor
+            divisionButton.backgroundColor = defaultButtonColor
+        case "×":
+            minusButton.backgroundColor = defaultButtonColor
+            plusButton.backgroundColor = defaultButtonColor
+            divisionButton.backgroundColor = defaultButtonColor
+        case "÷":
+            minusButton.backgroundColor = defaultButtonColor
+            multiButton.backgroundColor = defaultButtonColor
+            plusButton.backgroundColor = defaultButtonColor
+        default:
+            break
+        }
     }
     
     @IBAction func squareRootKey(_ sender: UIButton) {
         currentInput = sqrt(currentInput)
         newValue = true
         savedValue = nil
+        plusButton.backgroundColor = defaultButtonColor
+        minusButton.backgroundColor = defaultButtonColor
+        multiButton.backgroundColor = defaultButtonColor
+        divisionButton.backgroundColor = defaultButtonColor
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
@@ -132,6 +178,10 @@ class ViewController: UIViewController {
         guard !equalButtonOn else {
             compilation() // При повторном нажатии на равно
             operatorButtonOn = false
+            plusButton.backgroundColor = defaultButtonColor
+            minusButton.backgroundColor = defaultButtonColor
+            multiButton.backgroundColor = defaultButtonColor
+            divisionButton.backgroundColor = defaultButtonColor
             return currentInput = savedValue!
         }
         equalButtonOn = true
@@ -149,7 +199,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func changeColorWhileButtonPressed(_ sender: UIButton) {
-        sender.setBackgroundColor(color: .red, forState: .highlighted)
+        sender.setBackgroundColor(color: activButtonColor, forState: .highlighted)
     }
     
     func compilation() {
